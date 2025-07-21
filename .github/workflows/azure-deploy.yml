@@ -5,8 +5,8 @@ on:
     branches: [ main ]
 
 env:
-  AZURE_WEBAPP_NAME: creditrisk-azure-app       # Replace if needed
-  AZURE_RESOURCE_GROUP: SDP-Batch3          # Replace if needed
+  AZURE_WEBAPP_NAME: creditrisk-azure-app
+  AZURE_RESOURCE_GROUP: SDP-Batch3
   PYTHON_VERSION: '3.10'
 
 jobs:
@@ -23,8 +23,7 @@ jobs:
         python-version: ${{ env.PYTHON_VERSION }}
 
     - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      run: pip install -r requirements.txt
 
     - name: Azure Login
       uses: azure/login@v1
