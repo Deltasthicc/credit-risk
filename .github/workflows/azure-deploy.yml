@@ -1,4 +1,4 @@
-name: Deploy CreditRisk App to Azure
+name: Deploy to Azure Web App
 
 on:
   push:
@@ -23,9 +23,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Zip the app for deployment
+    - name: Zip app for deployment
       run: |
-        zip -r app.zip . -x "*.git*"
+        zip -r app.zip . -x "*.git*" "__pycache__/*"
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
