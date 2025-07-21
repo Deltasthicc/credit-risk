@@ -11,8 +11,6 @@ sentence-transformers
 fastapi
 uvicorn
 joblib
-os
-re
 requests
 azure-ai-agents
 azure-ai-projects
