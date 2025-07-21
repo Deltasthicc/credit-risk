@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  AZURE_WEBAPP_NAME: creditrisk-azure-app   # replace if different
+  AZURE_WEBAPP_NAME: creditrisk-azure-app
   PYTHON_VERSION: '3.10'
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r credit_risk/requirements.txt
+        pip install -r requirements.txt
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
@@ -31,5 +31,5 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         username: ${{ secrets.AZURE_WEBAPP_USERNAME }}
         password: ${{ secrets.AZURE_WEBAPP_PASSWORD }}
-        package: credit_risk
-        startup-command: --chdir credit_risk gunicorn --bind=0.0.0.0 --timeout 600 app:app
+        package: .
+        startup-command: gunicorn --bind=0.0.0.0 --timeout 600 app:app
