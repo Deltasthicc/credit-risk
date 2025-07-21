@@ -5,7 +5,8 @@ on:
     branches: [ main ]
 
 env:
-  AZURE_WEBAPP_NAME: creditrisk-azure-app
+  AZURE_WEBAPP_NAME: creditrisk-azure-app       # Replace if needed
+  AZURE_RESOURCE_GROUP: SDP-Batch3          # Replace if needed
   PYTHON_VERSION: '3.10'
 
 jobs:
@@ -25,11 +26,15 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        username: ${{ secrets.AZURE_WEBAPP_USERNAME }}
-        password: ${{ secrets.AZURE_WEBAPP_PASSWORD }}
+        resource-group-name: ${{ env.AZURE_RESOURCE_GROUP }}
         package: .
         startup-command: gunicorn --bind=0.0.0.0 --timeout 600 app:app
