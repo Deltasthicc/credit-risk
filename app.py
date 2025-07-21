@@ -11,7 +11,7 @@ from mcp.validator import validate_input_against_schema, validate_output_against
 import json
 import os
 from core.agent_registry import AGENT_PIPELINES
-from flask import jsonify, request
+
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
@@ -53,6 +53,3 @@ def run_smart_controller():
     except Exception as e:
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=False)
