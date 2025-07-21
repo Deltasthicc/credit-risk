@@ -17,4 +17,3 @@ azure-ai-projects
 requests
 gunicorn
 waitress
-
