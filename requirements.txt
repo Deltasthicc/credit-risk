@@ -17,7 +17,4 @@ azure-ai-projects
 requests
 gunicorn
 waitress
-azure-core
-azure-mgmt-web
-azure-functions
-azure-functions-worker
+
