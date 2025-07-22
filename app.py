@@ -53,3 +53,6 @@ def run_smart_controller():
     except Exception as e:
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=False)
